@@ -20,9 +20,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/cache', function () {
-    return Carbon::now()->timezone('asia/taipei')->format('Y-m-d H:i:s');
+    return response()->json(Carbon::now()->timezone('asia/taipei')->format('Y-m-d H:i:s'));
 });
 
 Route::get('/no-cache', function () {
-    return Carbon::now()->timezone('asia/taipei')->format('Y-m-d H:i:s');
+    return response()->json(Carbon::now()->timezone('asia/taipei')->format('Y-m-d H:i:s'));
 });
