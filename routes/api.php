@@ -22,7 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/cache', function () {
     return response()
         ->json(Carbon::now()->timezone('asia/taipei')->format('Y-m-d H:i:s'))
-        ->setCache(['max_age' => 60]);
+        ->setCache(['max_age' => 60, 'public' => true]);
 });
 
 Route::get('/no-cache', function () {
