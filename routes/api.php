@@ -28,9 +28,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('auth:sanctum')->group(function () {
     Route::any('/cache', function () {
         return response()
-            ->json(Carbon::now()->timezone('asia/taipei')->format('Y-m-d H:i:s'))
-            ->setCache(['max_age' => 60, 'public' => true]);
-    });
+            ->json(Carbon::now()->timezone('asia/taipei')->format('Y-m-d H:i:s'));
+    })->middleware('cache.one-minute');
 
     Route::any('/no-cache', function () {
         return response()->json(Carbon::now()->timezone('asia/taipei')->format('Y-m-d H:i:s'));
