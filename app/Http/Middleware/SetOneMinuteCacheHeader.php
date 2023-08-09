@@ -13,11 +13,13 @@ class SetOneMinuteCacheHeader
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next, string $seconds): Response
     {
         $response = $next($request);
 
-        $response->setCache(['max_age' => 60, 'public' => true]);
+        if (ctype_digit($seconds)) {
+            $response->setCache(['max_age' => $seconds, 'public' => true]);
+        }
 
         return $response;
     }

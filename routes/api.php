@@ -29,7 +29,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::any('/cache', function () {
         return response()
             ->json(Carbon::now()->timezone('asia/taipei')->format('Y-m-d H:i:s'));
-    })->middleware('cache.one-minute');
+    })->middleware('cache.one-minute:60');
 
     Route::any('/no-cache', function () {
         return response()->json(Carbon::now()->timezone('asia/taipei')->format('Y-m-d H:i:s'));
